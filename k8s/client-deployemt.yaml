@@ -1,0 +1,20 @@
+apiVersion: apps/v1 # Deployment Object belongs from apps/v1.
+kind: Deployment # Object Type
+metadata:
+  name: client
+
+spec:
+  replicas: 3 # Number of Pods Want to Create...
+  selector:
+    matchLabels:
+      component: web
+  template:
+    metadata:
+      labels:   
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: stephengrider/multi-client # Image Pull from GitHub
+          ports:
+            - containerPort: 3000 # Client Application Expose At 30000 Port.
